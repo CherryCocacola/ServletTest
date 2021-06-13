@@ -29,7 +29,7 @@ public class ContentDAO{
 		int start = 1+ (page-1)*10;
 		int end = page*10;
 		
-		String sql =  "select * ,  (select count(id) as count "
+		String sql =  "	select * ,  (select count(id) as count "
 			  		+ "	              from tbl_board "
 				    + "	           	where "+field+" like ? "
 					+ "	           	  and useFlag ='Y' "
@@ -44,8 +44,8 @@ public class ContentDAO{
 					+ "                   and boardid in (select boardID "
 					+ "									    from user_auth "
 					+ "									   where rankcd=? ) "
-					+ "	      order by regdate desc)n "
-					+ "          where (@rownum:=0)=0)num "
+					+ "	      			order by regdate desc)n, "
+					+ "		  (SELECT @rownum:=0)low) num "
 					+ "  where num.num between ? and ? "; // 조회 sql
 		List<Notice> list = new ArrayList<>(); // list 배열 생성
 
