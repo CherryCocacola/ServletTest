@@ -6,16 +6,23 @@ function createFrom(obj){
 		return false;
 	}
 	
-	if(obj.password.value ==""){
-		alert("비밀번호를 반드시 입력하세요.");
-		obj.password.focus();
-		return false;
-	}
+	 let pw = obj.password.value;
+ 	 let num = pw.search(/[0-9]/g);
+ 	 let eng = pw.search(/[a-z]/ig);
+     let spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
 	
-	if(obj.password.value.length < 7){
-		alert("비밀번호는 7글자 이상으로 만들어주세요.");
-		obj.password.focus();
-		return false;
+ 	if(pw.length < 8 || pw.length > 20){
+	  alert("8자리 ~ 20자리 이내로 입력해주세요.");
+ 	 return false;
+ 	 
+	 }else if(pw.search(/\s/) != -1){
+ 		 alert("비밀번호는 공백 없이 입력해주세요.");
+ 	 return false;
+ 	 
+ 	}else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
+ 		 alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
+  	return false;
+  	
 	}
 	
 	if(obj.passwordCheck.value ==""){
@@ -42,16 +49,10 @@ function createFrom(obj){
 		return false;
 	}
 
-	var check = false;
 	for(var i=0;i<obj.mailing.length;i++){
 		if(obj.mailing[i].checked==true) check=true;
 	}
 
-	if(obj.mailing.value ==""){
-		alert("메일수신 여부를 체크해주세요.");
-		obj.mailing.focus();
-		return false;
-	}
 	check = false;
 	var str="";
 	for(var i=0; i<obj.interest.length; i++){
@@ -60,6 +61,7 @@ function createFrom(obj){
 		}	
 	}	
 }
+
 function idCheck(obj, root){
 	alert(obj.id.value);
 	
