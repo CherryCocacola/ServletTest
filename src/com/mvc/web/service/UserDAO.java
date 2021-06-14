@@ -87,7 +87,11 @@ public class UserDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		} finally {
+			jdbcUtil.close(con);
+			jdbcUtil.close(psmt);
+			jdbcUtil.close(rs);
+		}
 		return result;
 	}
 
@@ -112,7 +116,50 @@ public class UserDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		} finally {
+			jdbcUtil.close(con);
+			jdbcUtil.close(psmt);
+		}
 		return result;
+	}
+
+	//접속자 정보 입력
+	public void setLoginInfo(String userID, String userIP) {
+		Connection con =null;
+		PreparedStatement psmt = null;
+		
+		int result = 0;
+		String sql = "insert into user_swap(userID, userIP, outTime, division) "
+					+" values(?, ?, ?, ?) ";
+		
+		try {
+			con = ConnectionProvider.getConnection();
+		    psmt = con.prepareStatement(sql);
+			psmt.setString(1, userID);
+			psmt.setString(2, userIP);
+			psmt.setString(3, null);
+			psmt.setString(4, "I");
+			result = psmt.executeUpdate();	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			jdbcUtil.close(con);
+			jdbcUtil.close(psmt);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 }

@@ -48,18 +48,6 @@ function createFrom(obj){
 		obj.email.focus();
 		return false;
 	}
-
-	for(var i=0;i<obj.mailing.length;i++){
-		if(obj.mailing[i].checked==true) check=true;
-	}
-
-	check = false;
-	var str="";
-	for(var i=0; i<obj.interest.length; i++){
-		if(obj.interest[i].checked==true){
-			str+=obj.interest[i].value + ",";
-		}	
-	}	
 }
 
 function idCheck(obj, root){

@@ -15,11 +15,25 @@ import com.mvc.web.service.ContentDAO;
 public class ContentDetailController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//세션 값 불러오기
+		String userID = req.getSession().getAttribute("userID").toString();
+		String userNm = req.getSession().getAttribute("UserNm").toString();
+		String userRank = req.getSession().getAttribute("userRank").toString();
+		
+		//세션 값 테스트
+		System.out.println("CONTENT-userID :" + userID);
+		System.out.println("CONTENT-userNm :" + userNm);
+		System.out.println("CONTENT-userRank :" + userRank);
+		
+		//JSP 파라미터
 		String par = req.getParameter("id");	
 		String field_ = req.getParameter("f");
 		String qurry_ = req.getParameter("q");
 		String field = "title";
 		String qurry = "";
+		
+		
+		
 	
 		int id =0;
 		
@@ -39,6 +53,8 @@ public class ContentDetailController extends HttpServlet {
 		
 		Notice nt = ContentDAO.getInstance().getDetail(id);
 		
+		req.setAttribute("sid", userID);
+		req.setAttribute("srank", userRank);
 		req.setAttribute("nt", nt);
 		req.setAttribute("f", field);
 		req.setAttribute("q", qurry);

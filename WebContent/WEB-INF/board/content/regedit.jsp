@@ -18,11 +18,13 @@
 	<!-- side bar -->
 	<jsp:include page="/WEB-INF/board/etc/sidebar.jsp"></jsp:include>
 	<br>
+	<form action="regedit" method="post" >
 	<div class="container">
   		<div class="row">
+  			
   			<div class=col-2></div>
     		<div class="col-9">
-      			<form action="regedit" method="post" >
+      		
       				<div class="col-4">
              			<label for="Title" class="form-label">Title</label>
               			<input type="text" class="form-control" name="title" id="title" placeholder="Title" required>
@@ -31,7 +33,7 @@
              			<label for="content" class="form-label">Content</label>
               			<textarea class="form-control" name="content"></textarea>
               		</div>	
-				</form>
+				
 				<script type="text/javascript" defer>CKEDITOR.replace('content', {height: 300});</script>
     		</div>
     		<div class=col-1></div>
@@ -42,6 +44,7 @@
   		<div class="col-5">	<button class="btn btn-primary" type="submit">Save</button></div>  
   		</div>
 	</div>
+	</form>
 	
 </body>
 </html>

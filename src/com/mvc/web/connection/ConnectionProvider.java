@@ -8,9 +8,9 @@ public class ConnectionProvider {
 		Connection con = null;
 		
 		try {
-			 String url = "jdbc:mysql://localhost:3306/study1?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-			 String id = "lain79";
-			 String pass = "1111";
+			 String url = "jdbc:mysql://13.124.135.97:3306/PROJECT";
+			 String id = "cinema_pm";
+			 String pass = "cinema1234";
 			 String driver = "com.mysql.jdbc.Driver";
 			 Class.forName(driver);
 			 con = DriverManager.getConnection(url, id, pass);
